@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/first_name"
+        android:layout_width="@dimen/name_width"
+        android:layout_height="@dimen/defualt_height"
+        android:inputType="text"
+        android:hint="@string/first_name"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/last_name"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/last_name"
+        android:layout_width="@dimen/name_width"
+        android:layout_height="@dimen/defualt_height"
+        android:inputType="text"
+        android:hint="@string/last_Name"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintLeft_toRightOf="@+id/first_name"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="@dimen/emial_width"
+        android:layout_height="@dimen/defualt_height"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/phone_number"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/last_name"
+
+        />
+
+    <EditText
+        android:id="@+id/phone_number"
+        android:layout_width="@dimen/phone_num_width"
+        android:layout_height="@dimen/defualt_height"
+        android:hint="@string/phone_num"
+        app:layout_constraintBottom_toTopOf="@+id/thana"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/location"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="@dimen/name_width"
+        android:layout_height="@dimen/defualt_height"
+        android:hint="@string/location"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/zila"
+        app:layout_constraintLeft_toRightOf="@+id/phone_number"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+
+        />
+
+    <Spinner
+        android:id="@+id/thana"
+        android:layout_width="@dimen/name_width"
+        android:layout_height="@dimen/defualt_height"
+        android:autofillHints="@string/click"
+        app:layout_constraintBottom_toTopOf="@+id/post_office_code"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/zila"
+        app:layout_constraintTop_toBottomOf="@+id/phone_number"
+
+        />
+
+    <Spinner
+        android:id="@+id/zila"
+        android:layout_width="@dimen/name_width"
+        android:layout_height="@dimen/defualt_height"
+        app:layout_constraintBottom_toTopOf="@id/division"
+        app:layout_constraintLeft_toRightOf="@+id/thana"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location"
+
+        />
+
+    <Spinner
+        android:id="@+id/post_office_code"
+        android:layout_width="@dimen/name_width"
+        android:layout_height="@dimen/defualt_height"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/division"
+        app:layout_constraintTop_toBottomOf="@+id/thana" />
+
+    <Spinner
+        android:id="@+id/division"
+        android:layout_width="@dimen/name_width"
+        android:layout_height="@dimen/defualt_height"
+        app:layout_constraintBottom_toTopOf="@+id/signup_submit"
+        app:layout_constraintLeft_toRightOf="@+id/post_office_code"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zila" />
+
+
+    <Button
+        android:id="@+id/sign_in_back"
+        android:layout_width="@dimen/name_width"
+        android:layout_height="@dimen/defualt_height"
+        android:text="@string/back"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/signup_submit"
+        app:layout_constraintTop_toBottomOf="@+id/post_office_code" />
+
+    <Button
+        android:id="@+id/signup_submit"
+        android:layout_width="@dimen/name_width"
+        android:layout_height="@dimen/defualt_height"
+        android:text="@string/submit"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/sign_in_back"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/division" />
+
+
+</android.support.constraint.ConstraintLayout>

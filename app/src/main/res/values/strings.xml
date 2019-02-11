@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">woadec navigator</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="first_name">First Name</string>
+    <string name="last_Name">Last Name</string>
+    <string name="email">Enter Your Email</string>
+    <string name="location">House</string>
+    <string name="phone_num">Enter Your Phone Number</string>
+    <string name="click">change</string>
+    <string name="back">back</string>
+    <string name="submit">submit</string>
+
+</resources>

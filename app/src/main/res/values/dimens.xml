@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sign_in_up_button_width">150dp</dimen>
+    <dimen name="sign_in_up_button_height">60dp</dimen>
+    <dimen name="image_width">250dp</dimen>
+    <dimen name="image_height">200dp</dimen>
+    <dimen name="name_width">100dp</dimen>
+    <dimen name="defualt_height">50dp</dimen>
+    <dimen name="emial_width">200dp</dimen>
+    <dimen name="phone_num_width">150dp</dimen>
+    <dimen name="spinner_width">50dp</dimen>
+    <dimen name="location_width">200dp</dimen>
+
+</resources>
