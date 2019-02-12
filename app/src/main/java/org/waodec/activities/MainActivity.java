@@ -1,44 +1,42 @@
 package org.waodec.activities;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.waodec.R;
-import org.waodec.activities.singletons.SingletonRequestQueue;
 import org.waodec.activities.urls.URLS;
-import org.waodec.activities.volleies.ThanaResponseListener;
 
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
 
     private Button signUp, singIn, change;
 
     private Intent nextIntent;
 
     private final String BANGLA = "bn_BD";
+    private Context mContext;
 
     private JsonArrayRequest jsonArrayRequest;
 
@@ -74,30 +72,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.sign_in:
 
                 try {
-                    URL url = new URL(URLS.THANA);
+                    mContext = getApplicationContext();
+                    //URL url = new URL(URLS.THANA_UPLOAD);
 
-                    System.out.println(url);
+                    String url = URLS.THANA_UPLOAD;
+
+
+                    //url = URLEncoder.encode(url);
+                    //   System.out.println(url);
 
                     RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
 
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url.toString(), null, new Response.Listener<JSONObject>() {
+                    JSONObject gson = new JSONObject();
+
+
+                    gson.put("thana_id", 2);
+                    gson.put("thana_name", "Rampura");
+
+
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, gson, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
 
-                            try {
-                                System.out.println(response.get("thana_name"));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
+                            Log.i("Thana Register", response.toString() + "");
                         }
+
+
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
 
-                            System.out.println(error);
+                            System.out.println(error.getCause());
                         }
+
+
                     });
 
                     requestQueue.add(jsonObjectRequest);
@@ -105,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 } catch (Exception e) {
 
-                    System.out.println(e);
+                    System.out.println(e.getMessage());
                 }
 
 
