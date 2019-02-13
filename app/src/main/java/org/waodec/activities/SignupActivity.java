@@ -4,13 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
 import org.waodec.R;
-import org.waodec.activities.entities.RegisterClient;
+import org.waodec.activities.Spinners_fetcher.DivisionFetcher;
+import org.waodec.activities.Spinners_fetcher.PostOfficeCodeFetcher;
+import org.waodec.activities.Spinners_fetcher.ThanaFetcher;
+import org.waodec.activities.Spinners_fetcher.ZelaFetcher;
+import org.waodec.activities.uploader.RegisterClientUploader;
+import org.waodec.activities.urls.URLS;
 
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -18,16 +28,20 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private Button back, submit;
 
     private Intent backToSigninSignUpIntent;
+    private Intent bookSearchIntent;
 
     private EditText firstName, lastName, email, phoneNum, location;
 
     private Spinner division, zela, thana, postOfficeCode;
 
+    private RequestQueue requestQueue;//= Volley.newRequestQueue(getApplicationContext());
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_activity);
+
+
         back = (Button) findViewById(R.id.sign_in_back);
         submit = (Button) findViewById(R.id.signup_submit);
 
@@ -48,8 +62,39 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
         back.setOnClickListener(this);
         submit.setOnClickListener(this);
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        ThanaFetcher fetcher = new ThanaFetcher(thana, requestQueue, getApplicationContext());
+        new ZelaFetcher(zela, requestQueue, getApplicationContext());
+
+        PostOfficeCodeFetcher.ViewPostOfficeCode(requestQueue, getApplicationContext(), postOfficeCode);
+        DivisionFetcher.viewDivision(requestQueue, division, getApplicationContext());
+
+
+        // System.out.println(previousIntent.getStringExtra("thanas"));
 
     }
+
+    /**
+     * none field is empty then return true otherwise false
+     *
+     * @return boolean
+     */
+
+
+    private boolean isNotEmpty() {
+        return !firstName.getText().toString().isEmpty() &&
+                !lastName.getText().toString().isEmpty() &&
+                !email.getText().toString().isEmpty() &&
+                !phoneNum.getText().toString().isEmpty() &&
+                !location.getText().toString().isEmpty() &&
+                thana.getSelectedItemPosition() != 0 &&
+                zela.getSelectedItemPosition() != 0 &&
+                postOfficeCode.getSelectedItemPosition() != 0 &&
+                division.getSelectedItemPosition() != 0;
+    }
+
+
 
     @Override
     public void onClick(View v) {
@@ -63,27 +108,40 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 return;
             case R.id.signup_submit:
 
-                System.out.println(firstName.getText() + " " + lastName.getText());
+                try {
 
-                RegisterClient registerClient = new RegisterClient();
+                    if (isNotEmpty()) {
+                        JSONObject data = new JSONObject();
+                        data.put("firstName", firstName.getText().toString());
+                        data.put("lastName", lastName.getText().toString());
+                        data.put("email", email.getText().toString());
+                        //future work
+                        data.put("imageLink", "jajdhjahdjah");
+                        data.put("phoneNumber", phoneNum.getText().toString());
+                        data.put("zeladId", zela.getSelectedItemPosition());
+                        data.put("devisionId", division.getSelectedItemPosition());
+                        data.put("thanaId", thana.getSelectedItemPosition());
+                        data.put("location", location.getText().toString());
+                        data.put("postOfficeCode", postOfficeCode.getSelectedItemPosition());
+                        Log.i("submit clicked", data.toString());
+                        new RegisterClientUploader().upload(requestQueue, data, URLS.POST_REGISTER_CLIENT);
 
-                // EditText set
+                        bookSearchIntent = new Intent(SignupActivity.this, SearchActivity.class);
 
-                registerClient.setFirstName(firstName.getText().toString());
-                registerClient.setLastName(lastName.getText().toString());
-                registerClient.setEmail(email.getText().toString());
-                registerClient.setPhone_num(phoneNum.getText().toString());
+                        startActivity(bookSearchIntent);
+                        finish();
 
-                //Spinner set
-
-                registerClient.setZelaId((int) zela.getSelectedItemId());
-                registerClient.setDivisionId((int) division.getSelectedItemId());
-                registerClient.setThanaId((int) thana.getSelectedItemId());
-                registerClient.setPostOfficeCodeId((int) postOfficeCode.getSelectedItemId());
-
-                System.out.println(registerClient);
+                    }
+                } catch (Exception ex) {
+                    Log.e("submit", ex.getMessage());
+                }
 
                 return;
         }
     }
+
+
+
+
+
 }
