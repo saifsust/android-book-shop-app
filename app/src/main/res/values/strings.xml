@@ -10,5 +10,7 @@
     <string name="click">change</string>
     <string name="back">back</string>
     <string name="submit">submit</string>
+    <string name="pwd">Enter Password</string>
+    <string name="cnfrmPWD">Confirm Password</string>
 
 </resources>

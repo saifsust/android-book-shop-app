@@ -30,7 +30,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private Intent backToSigninSignUpIntent;
     private Intent bookSearchIntent;
 
-    private EditText firstName, lastName, email, phoneNum, location;
+    private EditText firstName, lastName, email, phoneNum, location, password, cnfrmPassword;
 
     private Spinner division, zela, thana, postOfficeCode;
 
@@ -52,6 +52,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         email = (EditText) findViewById(R.id.email);
         phoneNum = (EditText) findViewById(R.id.phone_number);
         location = (EditText) findViewById(R.id.location);
+        password = (EditText) findViewById(R.id.pwd);
+        cnfrmPassword = (EditText) findViewById(R.id.cnfrm_pwd);
 
 
         //Spinners are implemented
@@ -86,6 +88,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         return !firstName.getText().toString().isEmpty() &&
                 !lastName.getText().toString().isEmpty() &&
                 !email.getText().toString().isEmpty() &&
+                !password.getText().toString().isEmpty() &&
+                !cnfrmPassword.getText().toString().isEmpty() &&
                 !phoneNum.getText().toString().isEmpty() &&
                 !location.getText().toString().isEmpty() &&
                 thana.getSelectedItemPosition() != 0 &&
@@ -93,7 +97,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 postOfficeCode.getSelectedItemPosition() != 0 &&
                 division.getSelectedItemPosition() != 0;
     }
-
 
 
     @Override
@@ -115,6 +118,11 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                         data.put("firstName", firstName.getText().toString());
                         data.put("lastName", lastName.getText().toString());
                         data.put("email", email.getText().toString());
+
+                        //future work
+
+                        data.put("clientPassword", password.getText().toString());
+
                         //future work
                         data.put("imageLink", "jajdhjahdjah");
                         data.put("phoneNumber", phoneNum.getText().toString());
@@ -126,9 +134,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                         Log.i("submit clicked", data.toString());
                         new RegisterClientUploader().upload(requestQueue, data, URLS.POST_REGISTER_CLIENT);
 
-                        bookSearchIntent = new Intent(SignupActivity.this, SearchActivity.class);
-
-                        startActivity(bookSearchIntent);
+                        backToSigninSignUpIntent = new Intent(SignupActivity.this, MainActivity.class);
+                        startActivity(backToSigninSignUpIntent);
                         finish();
 
                     }
@@ -139,9 +146,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 return;
         }
     }
-
-
-
 
 
 }

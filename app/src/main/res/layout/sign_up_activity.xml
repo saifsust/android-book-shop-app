@@ -36,11 +36,34 @@
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/phone_number"
+        app:layout_constraintBottom_toTopOf="@+id/pwd"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/last_name"
 
+        />
+
+    <EditText
+        android:id="@+id/pwd"
+        android:layout_width="@dimen/emial_width"
+        android:layout_height="@dimen/defualt_height"
+        android:inputType="textPassword"
+        android:hint="@string/pwd"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cnfrm_pwd"
+        />
+    <EditText
+        android:id="@+id/cnfrm_pwd"
+        android:layout_width="@dimen/emial_width"
+        android:layout_height="@dimen/defualt_height"
+        android:hint="@string/cnfrmPWD"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/pwd"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/phone_number"
         />
 
     <EditText
@@ -51,7 +74,7 @@
         app:layout_constraintBottom_toTopOf="@+id/thana"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/location"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/cnfrm_pwd" />
 
     <EditText
         android:id="@+id/location"
@@ -62,7 +85,7 @@
         app:layout_constraintBottom_toTopOf="@+id/zila"
         app:layout_constraintLeft_toRightOf="@+id/phone_number"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/cnfrm_pwd"
 
         />
 
