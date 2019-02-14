@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,6 +35,8 @@ public class BookDetailActivity extends AppCompatActivity {
     private ListView listView;
     private JsonArrayRequest request;
 
+    private Intent intent;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +44,7 @@ public class BookDetailActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.book_detail_view);
 
-        Intent intent = getIntent();
+        intent = getIntent();
 
         String bookId = intent.getStringExtra("bookId");
 
@@ -53,6 +56,18 @@ public class BookDetailActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            intent = new Intent(BookDetailActivity.this, SearchActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
 
     private class BookDetailRequestListener implements Response.Listener<JSONArray>, Response.ErrorListener {
         @Override
@@ -73,7 +88,7 @@ public class BookDetailActivity extends AppCompatActivity {
 
                     Book book = new Book();
                     book.setBookName(jbook.getString("bookName"));
-                 //   book.setWriter(jbook.getString("writer"));
+                    //   book.setWriter(jbook.getString("writer"));
 
                     book.setTotalCopies(jbook.getInt("totalCopies"));
                     book.setTakenCopies(jbook.getInt("takenCopies"));
