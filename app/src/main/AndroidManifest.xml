@@ -22,7 +22,17 @@
 
         </activity>
         <activity android:name=".activities.SignupActivity" />
-        <activity android:name=".activities.SearchActivity" />
+        <!--- Searchable Activity impl -->
+        <activity android:name=".activities.SearchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+           <!-- <meta-data
+                android:name="android.app.SearchableInfo"
+                android:value="@layout/search_activity" />-->
+
+        </activity>
         <activity android:name=".activities.BookDetailActivity" />
         <activity android:name=".activities.RecordActivity" />
 

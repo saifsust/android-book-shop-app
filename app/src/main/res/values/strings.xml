@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">woadec navigator</string>
+    <string name="app_name">Easy Library</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>
     <string name="first_name">First Name</string>
@@ -12,5 +12,6 @@
     <string name="submit">submit</string>
     <string name="pwd">Enter Password</string>
     <string name="cnfrmPWD">Confirm Password</string>
+    <string name="search_bar_hint">Search Your Book</string>
 
 </resources>

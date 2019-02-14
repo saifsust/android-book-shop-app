@@ -10,5 +10,6 @@
     <dimen name="phone_num_width">150dp</dimen>
     <dimen name="spinner_width">50dp</dimen>
     <dimen name="location_width">200dp</dimen>
+    <dimen name="top_margin">5dp</dimen>
 
 </resources>

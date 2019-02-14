@@ -11,5 +11,6 @@ public interface URLS {
     public static final String GET_POST_OFFICE_CODE = "http://192.168.0.118:8080/post_office_code/all";
     public static final String GET_DIVISIONS = "http://192.168.0.118:8080/division/all";
 
-    public static final String POST_AUTHENTICATION="http://192.168.0.118:8080/authorizer/isAuthorized";
+    public static final String POST_AUTHENTICATION = "http://192.168.0.118:8080/authorizer/isAuthorized";
+    public static final String POST_BOOKS = "http://192.168.0.118:8080/book/search/";
 }

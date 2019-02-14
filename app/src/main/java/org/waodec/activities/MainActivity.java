@@ -21,7 +21,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.waodec.R;
-import org.waodec.activities.Spinners_fetcher.Authenticationer;
 import org.waodec.activities.urls.URLS;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -57,6 +56,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         change.setOnClickListener(this);
     }
 
+    /**
+     * check edittext field if empty or not. if empty then return false otherwise true
+     *
+     * @return boolean
+     */
     private boolean isNotEmpty() {
         return !email.getText().toString().isEmpty() && !password.getText().toString().isEmpty();
     }
@@ -74,8 +78,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 startActivity(nextIntent);
                 finish();
-
-                System.out.println("Hello");
 
                 return;
             case R.id.sign_in:
@@ -96,11 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     } catch (Exception ex) {
                         Log.e("userInfoError", ex.getMessage());
                     }
-
-
                 }
-
-
                 return;
 
             case R.id.change:
@@ -118,9 +116,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     *
-     *
-     *
+     * RequestListener implement Response .Listener and Response.ErrorListener interface to receive jsonobject and
+     * check if user is authorized or not. if authorized then searchActivity will open otherwise Toast will show
      */
 
     private class RequestListener implements Response.Listener<JSONObject>, Response.ErrorListener {
