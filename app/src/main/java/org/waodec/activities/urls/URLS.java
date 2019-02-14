@@ -13,4 +13,6 @@ public interface URLS {
 
     public static final String POST_AUTHENTICATION = "http://192.168.0.118:8080/authorizer/isAuthorized";
     public static final String POST_BOOKS = "http://192.168.0.118:8080/book/search/";
+
+    public static final String POST_BOOK_DETAIL = "http://192.168.0.118:8080/borrower/report/";
 }

@@ -12,4 +12,7 @@
     <dimen name="location_width">200dp</dimen>
     <dimen name="top_margin">5dp</dimen>
 
+    <dimen name="book_img_width">100dp</dimen>
+    <dimen name="book_img_height">100dp</dimen>
+
 </resources>
