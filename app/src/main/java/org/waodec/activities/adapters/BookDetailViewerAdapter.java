@@ -47,8 +47,16 @@ public class BookDetailViewerAdapter extends BaseAdapter {
         if (view == null)
             view = LayoutInflater.from(context).inflate(R.layout.book_detail, parent, false);
         TextView bookName = (TextView) view.findViewById(R.id.book_detail_name);
+        TextView returnDate = (TextView) view.findViewById(R.id.return_date);
+        TextView bookBorrower = (TextView) view.findViewById(R.id.book_detail_borrower);
+
+
         Borrower borrower = borrowers.get(position);
         bookName.setText(borrower.getBook().getBookName());
+        bookBorrower.setText(borrower.getRegisterClient().getFirstName() + " " + borrower.getRegisterClient().getLastName());
+        returnDate.setText(borrower.getReturnDate());
+
+
         return view;
     }
 }

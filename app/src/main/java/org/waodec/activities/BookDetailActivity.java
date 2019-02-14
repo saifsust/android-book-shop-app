@@ -22,6 +22,7 @@ import org.waodec.activities.adapters.BookDetailViewerAdapter;
 import org.waodec.activities.singletons.SingletonRequestQueue;
 import org.waodec.activities.uploader.Book;
 import org.waodec.activities.uploader.Borrower;
+import org.waodec.activities.uploader.RegisterClient;
 import org.waodec.activities.urls.URLS;
 
 import java.util.ArrayList;
@@ -72,9 +73,18 @@ public class BookDetailActivity extends AppCompatActivity {
 
                     Book book = new Book();
                     book.setBookName(jbook.getString("bookName"));
+                 //   book.setWriter(jbook.getString("writer"));
+
+                    book.setTotalCopies(jbook.getInt("totalCopies"));
+                    book.setTakenCopies(jbook.getInt("takenCopies"));
 
 
-                    JSONObject registerClient = data.getJSONObject("registerClient");
+                    JSONObject jregisterClient = data.getJSONObject("registerClient");
+
+                    RegisterClient registerClient = new RegisterClient();
+
+                    registerClient.setFirstName(jregisterClient.getString("firstName"));
+                    registerClient.setLastName(jregisterClient.getString("lastName"));
 
 
                     String receiveDate = data.getString("receiveDate");
@@ -91,6 +101,9 @@ public class BookDetailActivity extends AppCompatActivity {
 
                     Borrower borrower = new Borrower();
                     borrower.setBook(book);
+                    borrower.setRegisterClient(registerClient);
+                    borrower.setReceiveDate(receiveDate);
+                    borrower.setReturnDate(returnDate);
 
                     info.add(borrower);
 
