@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linearLayout3"
     android:layout_width="match_parent"
@@ -13,22 +13,15 @@
         android:layout_height="@dimen/defualt_height"
         android:layout_marginTop="@dimen/top_margin"
         android:background="@color/colorPrimary"
-        android:queryHint="@string/search_bar_hint"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:queryHint="@string/search_bar_hint" />
 
     <ListView
         android:id="@+id/book_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/design_default_color_primary_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar"
-
+        android:layout_marginTop="@dimen/defualt_height"
         />
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
